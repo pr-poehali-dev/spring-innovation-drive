@@ -5,7 +5,7 @@ interface HeroTerminalProps {
   onExitTriggered?: (isExiting: boolean) => void
 }
 
-const FULL_TEXT = "код импульс"
+const FULL_TEXT = "тетрис"
 
 const fetchIPInfo = async (retries = 1): Promise<string> => {
   const isLikelyBlocked =
@@ -92,11 +92,11 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
         return [
           '<span class="text-cyan-400 font-bold">Доступные команды:</span>',
           '  <span class="text-yellow-400">очистить</span>     - <span class="text-gray-400">Очистить экран терминала</span>',
-          '  <span class="text-yellow-400">кто</span>          - <span class="text-gray-400">Информация о КодИмпульс</span>',
+          '  <span class="text-yellow-400">кто</span>          - <span class="text-gray-400">Информация о Тетрис</span>',
           '  <span class="text-yellow-400">время</span>        - <span class="text-gray-400">Показать дату и время</span>',
-          '  <span class="text-yellow-400">трассировка</span>  - <span class="text-gray-400">Запустить трассировку</span>',
-          '  <span class="text-yellow-400">доступ</span>       - <span class="text-gray-400">Запросить доступ к системе</span>',
-          '  <span class="text-yellow-400">импульс</span>      - <span class="text-gray-400">Активировать импульс</span>',
+          '  <span class="text-yellow-400">рекорды</span>      - <span class="text-gray-400">Таблица рекордов</span>',
+          '  <span class="text-yellow-400">фигуры</span>       - <span class="text-gray-400">Список фигур Тетрис</span>',
+          '  <span class="text-yellow-400">играть</span>       - <span class="text-gray-400">Запустить игру</span>',
         ]
 
       case "clear":
@@ -106,42 +106,48 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
       case "whoami":
       case "кто":
         return [
-          `<span class="text-green-400">Название:</span> <span class="text-green-300">КодИмпульс</span>`,
-          `<span class="text-green-400">Локация:</span> <span class="text-green-200">приближается к вам..</span>`,
-          `<span class="text-green-400">Телеграм:</span> <a href="https://t.me/codeimpulse" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:text-green-200 underline">@codeimpulse</a>`,
-          `<span class="text-green-400">GitHub:</span> <a href="https://github.com/codeimpulse" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:text-green-200 underline">@codeimpulse</a>`,
-          `<span class="text-green-400">Сайт:</span> <a href="https://codeimpulse.dev" target="_blank" rel="noopener noreferrer" class="text-green-300 hover:text-green-200 underline">codeimpulse.dev</a>`,
+          `<span class="text-green-400">Игра:</span> <span class="text-green-300">Тетрис — классика навсегда</span>`,
+          `<span class="text-green-400">Жанр:</span> <span class="text-green-200">Головоломка / Аркада</span>`,
+          `<span class="text-green-400">Создан:</span> <span class="text-green-200">Алексей Пажитнов, 1984</span>`,
+          `<span class="text-green-400">Цель:</span> <span class="text-green-200">Складывай фигуры, убирай линии, бей рекорды</span>`,
+          `<span class="text-green-400">Режимы:</span> <span class="text-green-200">Одиночная игра | Рекорды | Челлендж</span>`,
         ]
 
-      case "access":
-      case "доступ":
+      case "records":
+      case "рекорды":
         return [
-          '<span class="text-red-400 font-bold">[ДОСТУП ЗАПРЕЩЁН]</span> <span class="text-yellow-400">ВВЕДИТЕ \'ИМПУЛЬС\'</span>',
+          '<span class="text-cyan-400 font-bold">🏆 Таблица рекордов:</span>',
+          ' <span class="text-yellow-400">1.</span>  <span class="text-white">MATRIX</span>    <span class="text-green-300">999.999</span> <span class="text-gray-400">очков</span>',
+          ' <span class="text-yellow-400">2.</span>  <span class="text-white">T3TR15</span>    <span class="text-green-300">847.320</span> <span class="text-gray-400">очков</span>',
+          ' <span class="text-yellow-400">3.</span>  <span class="text-white">HACKER</span>    <span class="text-green-300">712.500</span> <span class="text-gray-400">очков</span>',
+          ' <span class="text-yellow-400">4.</span>  <span class="text-white">BLOCK_X</span>   <span class="text-green-300">650.100</span> <span class="text-gray-400">очков</span>',
+          ' <span class="text-yellow-400">5.</span>  <span class="text-white">ZERO_G</span>    <span class="text-green-300">599.800</span> <span class="text-gray-400">очков</span>',
+          '<span class="text-gray-400">Войди в игру, чтобы попасть в таблицу!</span>',
         ]
 
-      case "trace":
-      case "трассировка":
+      case "figures":
+      case "фигуры":
         return [
-          '<span class="text-cyan-400">$ traceroute целевой_хост</span>',
-          '<span class="text-gray-400">трассировка до</span> <span class="text-white">целевой_хост</span> <span class="text-gray-400">(</span><span class="text-cyan-300">192.168.1.1</span><span class="text-gray-400">), макс. 30 прыжков, 60 байт</span>',
-          ' <span class="text-yellow-400">1</span>  <span class="text-green-300">шлюз</span> <span class="text-gray-400">(</span><span class="text-cyan-300">192.168.1.1</span><span class="text-gray-400">)</span>  <span class="text-white">1.234 мс</span>  <span class="text-white">1.123 мс</span>  <span class="text-white">1.456 мс</span>',
-          ' <span class="text-yellow-400">2</span>  <span class="text-cyan-300">10.0.0.1</span> <span class="text-gray-400">(</span><span class="text-cyan-300">10.0.0.1</span><span class="text-gray-400">)</span>  <span class="text-white">12.345 мс</span>  <span class="text-white">11.234 мс</span>  <span class="text-white">13.456 мс</span>',
-          ' <span class="text-yellow-400">3</span>  <span class="text-cyan-300">172.16.0.1</span> <span class="text-gray-400">(</span><span class="text-cyan-300">172.16.0.1</span><span class="text-gray-400">)</span>  <span class="text-white">23.456 мс</span>  <span class="text-white">22.345 мс</span>  <span class="text-white">24.567 мс</span>',
-          ' <span class="text-yellow-400">4</span>  <span class="text-red-400">* * *</span>',
-          ' <span class="text-yellow-400">5</span>  <span class="text-cyan-300">203.0.113.1</span> <span class="text-gray-400">(</span><span class="text-cyan-300">203.0.113.1</span><span class="text-gray-400">)</span>  <span class="text-white">45.678 мс</span>  <span class="text-white">44.567 мс</span>  <span class="text-white">46.789 мс</span>',
-          '<span class="text-green-400">трассировка завершена - цель обнаружена</span>',
+          '<span class="text-cyan-400 font-bold">Фигуры Тетрис (тетрамино):</span>',
+          '  <span class="text-cyan-400">I</span>  <span class="text-gray-400">— длинная палка (4 блока)</span>',
+          '  <span class="text-yellow-400">O</span>  <span class="text-gray-400">— квадрат 2x2</span>',
+          '  <span class="text-orange-400">L</span>  <span class="text-gray-400">— Г-образная фигура</span>',
+          '  <span class="text-blue-400">J</span>  <span class="text-gray-400">— зеркальная Г-образная</span>',
+          '  <span class="text-green-400">S</span>  <span class="text-gray-400">— S-образная змейка</span>',
+          '  <span class="text-red-400">Z</span>  <span class="text-gray-400">— Z-образная змейка</span>',
+          '  <span class="text-purple-400">T</span>  <span class="text-gray-400">— T-образная фигура</span>',
         ]
 
       case "time":
-      case "время":
+      case "время": {
         const now = new Date()
         const timeString = now.toLocaleString("ru-RU")
         const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone
         return [`<span class="text-cyan-400">${timeString}</span> <span class="text-yellow-400">${timezoneName}</span>`]
+      }
 
-      case "impulse":
-      case "импульс":
-      case "pulse":
+      case "play":
+      case "играть":
         executeExit()
         return [""]
 
@@ -161,36 +167,32 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
 
     const initialTimeout = setTimeout(async () => {
       const exitSequence = [
-        '<span class="text-red-400 font-bold">ИНИЦИАЛИЗАЦИЯ ТЕРМАЛЬНОГО КОНТАКТА...</span>',
+        '<span class="text-cyan-400 font-bold">ЗАПУСК ИГРОВОГО ДВИЖКА ТЕТРИС...</span>',
         "",
-        '<span class="text-cyan-400">$ импульс --активация</span>',
-        '<span class="text-yellow-400">состояние_протокола:</span> <span class="text-green-300">ИМПУЛЬС_АКТИВЕН</span>',
-        '<span class="text-yellow-400">режим_синхронизации:</span> <span class="text-orange-400">ВКЛЮЧЁН</span>',
+        '<span class="text-cyan-400">$ tetris --init --mode=classic</span>',
+        '<span class="text-yellow-400">загрузка_ресурсов:</span> <span class="text-green-300">OK</span>',
+        '<span class="text-yellow-400">инициализация_поля:</span> <span class="text-green-300">10x20 клеток</span>',
+        '<span class="text-yellow-400">генератор_фигур:</span> <span class="text-orange-400">СЛУЧАЙНЫЙ_РЕЖИМ</span>',
         "",
-        '<span class="text-cyan-400">$ cat /proc/состояние_ядра</span>',
-        '<span class="text-red-500 font-bold">ПАНИКА ЯДРА:</span> <span class="text-yellow-400">Невозможно обработать NULL-указатель</span> <span class="text-magenta-400">0xDEADBEEF</span>',
-        '<span class="text-red-500 font-bold">ОШИБКА:</span> <span class="text-cyan-400">сбой запроса страничной памяти</span>',
-        '<span class="text-green-400">IP:</span> <span class="text-yellow-400">[&lt;ffffffffa0123456&gt;]</span> <span class="text-red-400">impulse_exit+0x42/0x100</span>',
+        '<span class="text-cyan-400">$ cat /proc/tetris/engine</span>',
+        '<span class="text-green-400">движок:</span> <span class="text-white">TetrisCore v2.0</span>',
+        '<span class="text-green-400">фреймрейт:</span> <span class="text-white">60 FPS</span>',
+        '<span class="text-green-400">гравитация:</span> <span class="text-white">уровень 1 → 10</span>',
         "",
-        '<span class="text-cyan-400">$ ps aux | grep импульс</span>',
-        '<span class="text-red-400 font-bold animate-pulse">НЕЙРОСЕТЬ</span> <span class="text-yellow-400 font-bold animate-pulse">АКТИВНО_СКАНИРУЕТ</span> <span class="text-cyan-400 font-bold animate-pulse">ДАННЫЕ_ОБНАРУЖЕНЫ</span>',
-        '<span class="text-magenta-400 font-bold animate-pulse">МОДУЛЬ_ЗАЩИТЫ</span> <span class="text-green-400 font-bold animate-pulse">АНТРОПОМОРФИЗМ_АКТИВЕН</span>',
-        '<span class="text-purple-400 font-bold animate-pulse">ПРОТОКОЛЫ_ИМПУЛЬСА</span> <span class="text-orange-400 font-bold animate-pulse">ПРОРЫВ_НЕИЗБЕЖЕН</span>',
+        '<span class="text-cyan-400">$ ps aux | grep tetris</span>',
+        '<span class="text-yellow-400 font-bold animate-pulse">ФИГУРА_I</span> <span class="text-cyan-400 font-bold animate-pulse">ПАДАЕТ</span> <span class="text-green-400 font-bold animate-pulse">СКОРОСТЬ_1.0</span>',
+        '<span class="text-orange-400 font-bold animate-pulse">ФИГУРА_L</span> <span class="text-purple-400 font-bold animate-pulse">В_ОЧЕРЕДИ</span>',
+        '<span class="text-red-400 font-bold animate-pulse">ЛИНИЯ</span> <span class="text-green-400 font-bold animate-pulse">ПОЧТИ_ЗАПОЛНЕНА</span> <span class="text-yellow-400 font-bold animate-pulse">+100_ОЧКОВ</span>',
         "",
-        '<span class="text-yellow-400">Стек вызовов:</span>',
-        ' <span class="text-cyan-400">[&lt;ffffffffa0123456&gt;]</span> <span class="text-green-400">impulse_exit+0x42/0x100</span> <span class="text-magenta-400">[impulse_core]</span>',
-        ' <span class="text-cyan-400">[&lt;ffffffff81234567&gt;]</span> <span class="text-green-400">sys_exit_group+0x0/0x20</span>',
-        ' <span class="text-cyan-400">[&lt;ffffffff81345678&gt;]</span> <span class="text-green-400">system_call_fastpath+0x16/0x1b</span>',
+        '<span class="text-yellow-400">Загрузка уровней:</span>',
+        ' <span class="text-cyan-400">[▓▓▓▓▓▓▓▓░░]</span> <span class="text-green-400">80%</span> <span class="text-gray-400">— уровень 1</span>',
+        ' <span class="text-cyan-400">[▓▓▓▓▓▓▓▓▓▓]</span> <span class="text-green-400">100%</span> <span class="text-gray-400">— готово!</span>',
         "",
-        '<span class="text-red-500 font-bold text-lg">КРИТИЧЕСКАЯ ОШИБКА:</span> <span class="text-yellow-400 font-bold">ПРОРЫВ ПРОТОКОЛОВ ИМПУЛЬСА</span>',
-        '<span class="text-orange-400 font-bold">ПОВРЕЖДЕНИЕ_ПАМЯТИ:</span> <span class="text-magenta-400">0xDEADBEEF</span> <span class="text-red-400">-&gt;</span> <span class="text-cyan-400">0xCAFEBABE</span>',
-        '<span class="text-red-400 font-bold">ПЕРЕПОЛНЕНИЕ_СТЕКА в</span> <span class="text-yellow-400">IMPULSE_HANDLER()</span>',
+        '<span class="text-green-500 font-bold text-lg animate-pulse">ИГРА ЗАГРУЖЕНА!</span>',
+        '<span class="text-yellow-400 font-bold animate-pulse">ДОБРО ПОЖАЛОВАТЬ В ТЕТРИС</span>',
         "",
-        '<span class="text-red-500 font-bold text-xl animate-pulse">СБОЙ ЦЕЛОСТНОСТИ СИСТЕМЫ</span>',
-        '<span class="text-blue-400 font-bold text-lg animate-pulse">СИНИЙ ЭКРАН НЕИЗБЕЖЕН...</span>',
-        "",
-        '<span class="text-red-400 font-bold text-2xl animate-pulse">КРИТИЧНО</span>',
-        '<span class="text-red-500 font-bold text-3xl animate-pulse">КРИТИЧЕСКИЙ СБОЙ СИСТЕМЫ</span>',
+        '<span class="text-cyan-400 font-bold text-xl animate-pulse">СТАРТ!</span>',
+        '<span class="text-green-500 font-bold text-2xl animate-pulse">УДАЧИ В ИГРЕ!</span>',
       ]
 
       let lineIndex = 0
@@ -231,9 +233,9 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
 
           const typingSpeed = currentLine.includes("$")
             ? 2.5
-            : currentLine.includes("ПАНИКА ЯДРА") || currentLine.includes("КРИТИЧ")
+            : currentLine.includes("ЗАГРУЖЕНА") || currentLine.includes("СТАРТ")
               ? 3.75
-              : currentLine.includes("ИМПУЛЬС")
+              : currentLine.includes("ТЕТРИС")
                 ? 1.875
                 : Math.random() * 1.25 + 1
 
@@ -244,7 +246,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
 
           const pauseTime = currentLine.includes("$")
             ? 25
-            : currentLine.includes("КРИТИЧ") || currentLine.includes("СБОЙ")
+            : currentLine.includes("ЗАГРУЖЕНА") || currentLine.includes("СТАРТ")
               ? 37.5
               : 12.5
 
@@ -270,7 +272,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
       if (response[0] === "CLEAR_SCREEN") {
         setTerminalLines([])
       } else {
-        setTerminalLines((prev) => [...prev, `root@impulse:~# ${command}`, ...response, ""])
+        setTerminalLines((prev) => [...prev, `root@tetris:~# ${command}`, ...response, ""])
       }
 
       setUserInput("")
@@ -321,17 +323,17 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
 
         const lines = [
           "",
-          '<span class="text-cyan-400">$ traceroute целевой_хост</span>',
+          '<span class="text-cyan-400">$ tetris --check-connection</span>',
           `<span class="text-yellow-400">сетевая_трассировка:</span> <span class="text-white">${currentIpInfo}</span>`,
           "",
-          '<span class="text-cyan-400">$ md5sum /dev/urandom | head -c 16</span>',
-          `<span class="text-yellow-400">отпечаток:</span> <span class="text-orange-400">${fingerprint}</span><span class="text-gray-400">...</span>`,
+          '<span class="text-cyan-400">$ tetris --fingerprint</span>',
+          `<span class="text-yellow-400">идентификатор_игрока:</span> <span class="text-orange-400">${fingerprint}</span><span class="text-gray-400">...</span>`,
           "",
-          '<span class="text-cyan-400">$ cat /proc/метаданные_пользователя</span>',
+          '<span class="text-cyan-400">$ cat /proc/данные_игрока</span>',
           `<span class="text-yellow-400">браузер=</span><span class="text-green-300">"${userAgent}"</span>`,
           `<span class="text-yellow-400">платформа=</span><span class="text-green-300">"${platform}"</span> <span class="text-yellow-400">язык=</span><span class="text-green-300">"${language}"</span>`,
-          `<span class="text-yellow-400">разрешение=</span><span class="text-green-300">"${screen}"</span> <span class="text-yellow-400">viewport=</span><span class="text-green-300">"${viewport}"</span>`,
-          `<span class="text-yellow-400">глубина_цвета=</span><span class="text-green-300">"${colorDepth}бит"</span> <span class="text-yellow-400">плотность=</span><span class="text-green-300">"${pixelRatio}x"</span>`,
+          `<span class="text-yellow-400">экран=</span><span class="text-green-300">"${screen}"</span> <span class="text-yellow-400">окно=</span><span class="text-green-300">"${viewport}"</span>`,
+          `<span class="text-yellow-400">цвет=</span><span class="text-green-300">"${colorDepth}бит"</span> <span class="text-yellow-400">плотность=</span><span class="text-green-300">"${pixelRatio}x"</span>`,
           `<span class="text-yellow-400">часовой_пояс=</span><span class="text-green-300">"${timezone}"</span>`,
           "",
         ]
@@ -459,17 +461,17 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
           <div className="text-2xl md:text-4xl font-bold mb-2 md:mb-4">:(</div>
 
           <div className="text-base md:text-xl mb-1 md:mb-2">
-            Активация импульса вызвала сбой и требуется перезагрузка.
+            Запуск игры перегрузил терминал и требуется перезагрузка.
           </div>
           <div className="text-sm md:text-lg mb-2 md:mb-4">
-            Мы собираем информацию об ошибке, после чего система перезагрузится.
+            Слишком много фигур одновременно! Восстанавливаем систему...
           </div>
 
           <div className="text-xs md:text-sm space-y-1 md:space-y-2 max-w-full">
             <div className="text-white space-y-1">
-              <div>Паника ядра - синхронизация невозможна: Критическое исключение</div>
-              <div className="hidden md:block">CPU: 0 PID: 1 Comm: swapper/0 Без патчей 6.1.0-impulse #1</div>
-              <div className="hidden md:block">Оборудование: IMPULSE Терминал/IMPULSE, BIOS v2.0 01/01/2025</div>
+              <div>Паника ядра - переполнение стека фигур: Критическое исключение</div>
+              <div className="hidden md:block">CPU: 0 PID: 1 Comm: tetris/engine Без патчей 6.1.0-tetris #1</div>
+              <div className="hidden md:block">Оборудование: TETRIS Терминал/GAME, BIOS v1.984 01/01/1984</div>
             </div>
 
             <div className="text-blue-200 space-y-1 mt-2 md:mt-4 hidden md:block">
@@ -485,21 +487,21 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
             </div>
 
             <div className="text-blue-300 space-y-1 mt-2 md:mt-4 hidden md:block">
-              <div>RIP: 0010:impulse_terminal_init+0x42/0x80</div>
+              <div>RIP: 0010:tetris_engine_init+0x42/0x80</div>
               <div>Code: 48 89 df e8 0b fe ff ff 85 c0 78 73 48 c7 c7 a0 e4 82 82 e8 0f 0b 48</div>
               <div>RSP: 0000:ffffc90000013e28 EFLAGS: 00010246</div>
               <div>RBP: ffffc90000013e40 DATA: 0000000000000000 R09: c0000000ffffdfff</div>
             </div>
 
             <div className="text-blue-400 space-y-1 mt-2 md:mt-4 hidden md:block">
-              <div>Подключённые модули: impulse_core impulse_terminal matrix_rain</div>
-              <div>---[ конец паники ядра - синхронизация невозможна: Критическое исключение ]---</div>
+              <div>Подключённые модули: tetris_core tetris_engine matrix_rain figure_generator</div>
+              <div>---[ конец паники ядра - переполнение стека фигур: Критическое исключение ]---</div>
             </div>
 
             <div className="mt-4 md:mt-6 space-y-2">
               <p className="text-sm md:text-base">Если вы обратитесь в поддержку, сообщите эту информацию:</p>
-              <p className="bg-blue-700 p-2 rounded text-xs md:text-sm">Код остановки: CRITICAL_PROCESS_DIED</p>
-              <p className="bg-blue-700 p-2 rounded text-xs md:text-sm">Источник сбоя: impulse.sys</p>
+              <p className="bg-blue-700 p-2 rounded text-xs md:text-sm">Код остановки: STACK_OVERFLOW_TETROMINO</p>
+              <p className="bg-blue-700 p-2 rounded text-xs md:text-sm">Источник сбоя: tetris_engine.sys</p>
 
               <div className="mt-4 p-3 bg-blue-800 rounded border border-blue-500 mb-20 md:mb-8">
                 <div className="text-yellow-300 font-bold text-sm md:text-base">Восстановление из резервных копий...</div>
@@ -525,7 +527,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
                       onClick={handleManualRestart}
                       className="mt-4 px-4 md:px-6 py-2 bg-green-600 hover:bg-green-500 text-white font-bold rounded transition-colors duration-200 border-2 border-green-400 text-sm md:text-base"
                     >
-                      Войти в терминал
+                      Вернуться в терминал
                     </button>
                   </>
                 )}
@@ -553,7 +555,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
               <div className="w-3 h-3 bg-destructive rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-primary rounded-full"></div>
-              <span className="ml-4 text-xs text-muted-foreground font-mono">терминал://codeimpulse.dev</span>
+              <span className="ml-4 text-xs text-muted-foreground font-mono">терминал://tetris.game</span>
             </div>
 
             <div className="p-8 font-mono">
@@ -576,7 +578,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
                             ? "text-red-400 font-bold"
                             : line && line.startsWith("$")
                               ? "text-green-400"
-                              : line && line.startsWith("root@impulse")
+                              : line && line.startsWith("root@tetris")
                                 ? "text-green-400 font-bold"
                                 : line &&
                                     (line.includes("[ДОСТУП ЗАПРЕЩЁН]") ||
@@ -593,8 +595,8 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
                                         line.includes("часовой_пояс=") ||
                                         line.includes("сетевая_трассировка:") ||
                                         line.includes("отпечаток:") ||
-                                        line.includes("@codeimpulse") ||
-                                        line.includes("github.com/codeimpulse"))
+                                        line.includes("идентификатор_игрока:") ||
+                                        line.includes("экран="))
                                     ? "text-green-400"
                                     : line &&
                                         (line.includes("АНАЛИЗ_ЗАВЕРШЁН") ||
@@ -616,7 +618,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
 
                 {isInteractive && !isExitSequenceActive && (
                   <div className="flex items-center mt-2">
-                    <span className="text-green-400 font-bold">root@impulse:~#</span>
+                    <span className="text-green-400 font-bold">root@tetris:~#</span>
                     <div className="relative flex-1 ml-1">
                       <input
                         ref={inputRef}
@@ -627,7 +629,7 @@ export function HeroTerminal({ onExitTriggered }: HeroTerminalProps) {
                         className="bg-transparent border-none outline-none text-muted-foreground font-mono w-full"
                         autoComplete="off"
                         spellCheck={false}
-                        placeholder="Введите 'помощь' для списка команд..."
+                        placeholder="Введите 'играть' или 'помощь'..."
                       />
                       <span
                         className={`absolute left-0 top-0 ${showInputCursor ? "opacity-100 text-green-400 font-bold text-lg" : "opacity-0"} transition-opacity duration-100 pointer-events-none`}

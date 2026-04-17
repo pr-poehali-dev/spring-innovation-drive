@@ -20,8 +20,8 @@ export function TerminalFooter({ isVisible = true }: TerminalFooterProps) {
       <div className="max-w-4xl mx-auto px-4 py-3">
         <div className="flex items-center justify-center font-mono text-sm">
           <span className="text-muted-foreground">
-            <span className="text-green-400 font-medium">2025 КодИмпульс </span>
-            <span className="text-green-400/70">| Терминал нового поколения</span>
+            <span className="text-green-400 font-medium">2026 Тетрис </span>
+            <span className="text-green-400/70">| Классика в новом терминале</span>
           </span>
         </div>
       </div>

@@ -54,7 +54,7 @@ export function TerminalHeader({ isVisible = true }: TerminalHeaderProps) {
       <div className="max-w-4xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between font-mono text-sm">
           <div className="flex items-center gap-4">
-            <span className="text-green-400 font-bold">root@impulse:~$</span>
+            <span className="text-green-400 font-bold">root@tetris:~$</span>
           </div>
 
           <div className="flex items-center gap-4">
